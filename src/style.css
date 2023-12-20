@@ -38,7 +38,7 @@ h1 {
   text-transform: uppercase;
   text-align: center;
 
-  font-size: 4rem;
+  font-size: clamp(1rem, 4rem, 2vw);
 }
 
 .floor {
