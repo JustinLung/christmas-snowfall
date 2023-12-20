@@ -7,10 +7,17 @@ const ctx: CanvasRenderingContext2D = canvas.getContext("2d") as CanvasRendering
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-window.addEventListener("resize", () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
+let treeTopX = canvas.width / 2;
+let treeTopY = canvas.height - 700; // Position at the bottom of the canvas
+let triangleWidths = [500, 615, 700]; // Widths for the triangles
+let triangleHeight = 180;
+let triangleSpacing = -30;
+
+// Variables for trunk
+let trunkX = canvas.width / 2 - 75;
+let trunkY = canvas.height - 225; // Position at the bottom of the canvas
+let trunkWidth = 150;
+let trunkHeight = 150;
 
 // Create an array to hold the snowflakes
 interface Snowflake {
@@ -43,6 +50,22 @@ function drawSnowflake(snowflake: Snowflake): void {
   ctx.closePath();
 }
 
+function drawChristmasTreeAndTrunk(treeTopX: number, treeTopY: number, trunkX: number, trunkY: number): void {
+  // Draw the trunk
+  ctx.fillStyle = 'rgb(150, 75, 0)';
+  ctx.fillRect(trunkX, trunkY, trunkWidth, trunkHeight);
+
+  // Draw the tree
+  for (let i = 0; i < 3; i++) {
+    ctx.beginPath();
+    ctx.moveTo(treeTopX, treeTopY + i * (triangleHeight + triangleSpacing));
+    ctx.lineTo(treeTopX - triangleWidths[i] / 2, treeTopY + triangleHeight + i * (triangleHeight + triangleSpacing));
+    ctx.lineTo(treeTopX + triangleWidths[i] / 2, treeTopY + triangleHeight + i * (triangleHeight + triangleSpacing));
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(0, 128, 0, 1)';
+    ctx.fill();
+  }
+}
 // Function to update the snowflakes' positions
 function updateSnowflakes(): void {
   for (let i = 0; i < snowflakes.length; i++) {
@@ -52,7 +75,6 @@ function updateSnowflakes(): void {
     // If the snowflake reaches the bottom, reset its position
     if (snowflake.y > canvas.height) {
       snowflake.y = 0;
-      // snowflakes[i] = createSnowflake();
     }
   }
 }
@@ -61,6 +83,9 @@ function updateSnowflakes(): void {
 function render(): void {
   // Clear the canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Draw Christmas tree and trunk
+  drawChristmasTreeAndTrunk(treeTopX, treeTopY, trunkX, trunkY);
 
   // Update and draw each snowflake
   updateSnowflakes();
