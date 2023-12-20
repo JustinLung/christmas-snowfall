@@ -30,6 +30,7 @@ interface Snowflake {
 
 const snowflakes: Snowflake[] = [];
 
+
 // Function to create a new snowflake
 function createSnowflake(): Snowflake {
   return {
@@ -64,8 +65,40 @@ function drawChristmasTreeAndTrunk(treeTopX: number, treeTopY: number, trunkX: n
     ctx.closePath();
     ctx.fillStyle = 'rgba(0, 128, 0, 1)';
     ctx.fill();
+
+    // Add decorations (baubles)
+    console.log(treeTopY);
+
+    drawBaubles(treeTopX, treeTopY, i);
   }
 }
+// Function to draw baubles as decorations on the tree
+function drawBaubles(treeTopX: number, treeTopY: number, level: number): void {
+  const maxBaubles = 6; // Set the maximum number of baubles per level
+  const baubleRadius = 15;
+  const baubleColor = "#ffa61e";
+
+  const numBaubles = Math.min(maxBaubles, level + 1); // Limit the number of baubles based on the level
+
+  for (let j = 0; j < numBaubles; j++) {
+    const fromTop = 100;
+    const baubleY = (treeTopY + level * (triangleHeight + triangleSpacing)) + fromTop;
+
+    const hyp = Math.hypot(triangleHeight, triangleWidths[level] / 2)
+
+    const angle = Math.acos(triangleHeight / hyp)
+    const adjectent = fromTop * Math.tan(angle)
+
+    const baubleX = treeTopX - adjectent * 0;
+
+    ctx.beginPath();
+    ctx.arc(baubleX, baubleY, baubleRadius, 0, Math.PI * 2);
+    ctx.fillStyle = baubleColor;
+    ctx.fill();
+    ctx.closePath();
+  }
+}
+
 // Function to update the snowflakes' positions
 function updateSnowflakes(): void {
   for (let i = 0; i < snowflakes.length; i++) {

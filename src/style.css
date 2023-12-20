@@ -42,3 +42,28 @@ h1 {
   bottom: 0;
   z-index: 1;
 }
+
+.floor:after {
+  content: "";
+  background-color: #fffafa;
+  width: 30rem;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 8rem;
+  border-top-right-radius: 100%;
+  border-top-left-radius: 75%;
+}
+
+.floor:before {
+  content: "";
+  background-color: #fffafa;
+  width: 30rem;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 8rem;
+  border-top-right-radius: 100%;
+  border-top-left-radius: 75%;
+}
+
