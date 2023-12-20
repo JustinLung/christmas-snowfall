@@ -23,6 +23,13 @@ canvas {
   left: 0;
 }
 
+a {
+  position: relative;
+  z-index: 1;
+  color: #fffafa;
+  cursor: pointer;
+}
+
 h1 {
   position: absolute;
   left: 50%;
@@ -67,3 +74,6 @@ h1 {
   border-top-left-radius: 75%;
 }
 
+svg {
+  padding: 2rem;
+}
