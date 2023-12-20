@@ -63,7 +63,7 @@ function drawChristmasTreeAndTrunk(treeTopX: number, treeTopY: number, trunkX: n
     ctx.lineTo(treeTopX - triangleWidths[i] / 2, treeTopY + triangleHeight + i * (triangleHeight + triangleSpacing));
     ctx.lineTo(treeTopX + triangleWidths[i] / 2, treeTopY + triangleHeight + i * (triangleHeight + triangleSpacing));
     ctx.closePath();
-    ctx.fillStyle = 'rgba(0, 128, 0, 1)';
+    ctx.fillStyle = '#006400';
     ctx.fill();
 
     // Add decorations (baubles)
